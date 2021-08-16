@@ -1,0 +1,25 @@
+{
+  "name": "Stats.js",
+  "description": "JavaScript Performance Monitor",
+  "version": "1.0",
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "scripts/background.js"
+  },
+  "permissions": [
+    "tabs",
+    "processes"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "scripts/stats.min.js",
+        "scripts/content.js"
+      ]
+    }
+  ]
+}
