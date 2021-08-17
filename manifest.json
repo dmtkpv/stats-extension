@@ -1,6 +1,6 @@
 {
-  "name": "Stats.js",
-  "description": "JavaScript Performance Monitor",
+  "name": "Performance Monitor",
+  "description": "Monitor milliseconds needed to render a frame, MBytes of allocated memory, the percentage of a single CPU core used",
   "version": "1.0",
   "manifest_version": 3,
   "background": {
@@ -8,18 +8,12 @@
   },
   "permissions": [
     "tabs",
-    "processes"
+    "processes",
+    "scripting"
   ],
-  "content_scripts": [
-    {
-      "matches": [
-        "http://*/*",
-        "https://*/*"
-      ],
-      "js": [
-        "scripts/stats.min.js",
-        "scripts/content.js"
-      ]
-    }
-  ]
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*"
+  ],
+  "action": {}
 }
