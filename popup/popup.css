@@ -1,0 +1,120 @@
+/*
+    Variables
+*/
+
+:root {
+    --margin: 8px;
+    --switch-width: 48px;
+    --switch-height: 18px;
+    --switch-padding: 2px;
+    --switch-radius: calc(var(--switch-height) / 2);
+    --switch-circle: calc(var(--switch-height) - var(--switch-padding) * 2);
+    --white: #FFFFFF;
+    --black: #3D4043;
+    --blue: #3774E0;
+}
+
+
+
+/*
+    Reset
+*/
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+body {
+    margin: var(--margin);
+    font-family: system-ui, sans-serif;
+    font-size: 10px;
+}
+input {
+    margin: 0;
+}
+label {
+    display: block;
+}
+
+
+
+/*
+    Checkbox
+*/
+
+.checkbox {
+    display: flex;
+    align-items: center;
+    margin-bottom: calc(var(--margin) / 2);
+}
+.checkbox input {
+    margin-right: calc(var(--margin) / 2);
+}
+.checkbox input:checked {
+    background: var(--blue);
+}
+
+
+
+/*
+    Switch
+*/
+
+.switch {
+    display: none;
+    position: relative;
+    margin-top: var(--margin);
+}
+.switch .bg {
+    display: block;
+    width: var(--switch-width);
+    height: var(--switch-height);
+    border-radius: var(--switch-radius);
+    background: var(--black);
+}
+.switch .bg:before,
+.switch .bg:after {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: var(--switch-width);
+    line-height: var(--switch-height);
+    text-align: center;
+    color: var(--white);
+}
+.switch .bg:before {
+    display: block;
+    content: 'OFF';
+    padding-left: calc(var(--switch-circle) + var(--switch-padding));
+    padding-right: calc(var(--switch-radius) / 2);
+}
+.switch .bg:after {
+    display: none;
+    content: 'ON';
+    padding-right: calc(var(--switch-circle) + var(--switch-padding));
+    padding-left: calc(var(--switch-radius) / 2);
+}
+
+.switch input {
+    position: absolute;
+    left: var(--switch-padding);
+    top: var(--switch-padding);
+    width: var(--switch-circle);
+    height: var(--switch-circle);
+    border-radius: calc(var(--switch-circle) / 2);
+    appearance: none;
+    background: var(--white);
+}
+.switch input:checked {
+    left: calc(var(--switch-width) - var(--switch-padding) - var(--switch-circle));
+}
+.switch input:checked ~ .bg {
+    background: var(--blue);
+}
+.switch input:checked ~ .bg:before {
+    display: none;
+}
+.switch input:checked ~ .bg:after {
+    display: block;
+}
