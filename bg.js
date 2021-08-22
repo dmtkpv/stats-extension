@@ -8,7 +8,7 @@ chrome.tabs.onUpdated.addListener(async (id, { status }) => {
     if (status !== 'complete') return;
     const data = await Storage.get(id);
     if (!data) return;
-    await Tabs.exec(id);
+    await Tabs.execContent(id);
     await Icon.set(id, data);
     await Tabs.sendMessage(id, 'config', data);
 })

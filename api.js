@@ -28,11 +28,12 @@ const promise = (context, method, params, onSuccess, onError) => {
 
 export const Tabs = {
 
-    exec (id) {
-        return promise(chrome.scripting, 'executeScript', {
-            target: { tabId: id },
-            files: ['content/content.js']
-        })
+    exec (tabId, script) {
+        return promise(chrome.scripting, 'executeScript', { target: { tabId }, files: [script] })
+    },
+
+    execContent (id) {
+        return Tabs.exec(id, 'content/tabstats.js').then(() => Tabs.exec(id, 'content/content.js'));
     },
 
     getProcess (id) {

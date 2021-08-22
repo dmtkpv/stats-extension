@@ -1,4 +1,4 @@
-(async () => {
+(({ Panel, Stats, Ticker }) => {
 
 
 
@@ -6,13 +6,11 @@
     // Stats
     // --------------------
 
-    const { Panel, Stats, Ticker } = await import(chrome.runtime.getURL('content/library.js'));
-
     const ms = new Panel('MS', '#0f0', '#020');
     const fps = new Panel('FPS', '#0ff', '#002');
-    const ram = new Panel('MB', '#f08', '#201');
-    const process_ram = new Panel('MB', '#f08', '#201');
-    const process_cpu = new Panel('%', '#f08', '#201');
+    const ram = new Panel('MB', '#f08', '#002');
+    const process_ram = new Panel('MB', '#f08', '#002');
+    const process_cpu = new Panel('%', '#ff0', '#002');
     const stats = new Stats('body', { ms, fps, ram, process_ram, process_cpu });
 
 
@@ -74,5 +72,5 @@
 
 
 
-})();
+})(TabStats);
 

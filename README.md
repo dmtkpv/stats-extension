@@ -1,4 +1,4 @@
-# Tabstats
+# TabStats
 **Performance monitor extension for Chrome**
 
 This extension provides a simple info box that will help you monitor your code performance.

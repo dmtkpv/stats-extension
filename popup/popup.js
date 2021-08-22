@@ -9,7 +9,7 @@ import { Storage, Tabs, Icon } from '../api.js'
         let data = {};
         data.process = await Tabs.getProcess(id);
         await Storage.set(id, data);
-        await Tabs.exec(id);
+        await Tabs.execContent(id);
         return data;
     }
 
