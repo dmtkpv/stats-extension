@@ -1,18 +1,23 @@
+// --------------------
+// Promise wrapper
+// --------------------
 
 const promise = (context, method, params, onSuccess, onError) => {
+
     if (!onSuccess) onSuccess = result => result;
     if (!onError) onError = () => null;
-    if (!Array.isArray(params)) params = [params];
+    if (params !== undefined && !Array.isArray(params)) params = [params];
+
     return new Promise(resolve => {
+        if (params === undefined) context[method](resolve);
+        else context[method](...params, resolve);
+    })
 
-        if (!params) context[method](resolve)
-
-        context[method](...params, resolve)
-
-    }).then(onSuccess).catch(error => {
+    .then(onSuccess).catch(error => {
         console.log(error);
         return onError(error);
     });
+
 }
 
 
@@ -26,7 +31,7 @@ export const Tabs = {
     exec (id) {
         return promise(chrome.scripting, 'executeScript', {
             target: { tabId: id },
-            files: ['content.js']
+            files: ['content/content.js']
         })
     },
 
@@ -66,7 +71,7 @@ export const Storage = {
     },
 
     clear () {
-        return chrome.storage.local.clear();
+        return promise(chrome.storage.local, 'clear');
     }
 
 }
@@ -85,12 +90,13 @@ export const Icon = {
         const bar = 2;
         const margin = 1;
         const height = size - margin * 2;
+        const active = Object.values(data).some(value => value);
 
         const canvas = new OffscreenCanvas(size, size);
         const ctx = canvas.getContext('2d');
 
         ctx.clearRect(0, 0, size, size);
-        ctx.fillStyle = data.active ? '#3774E0' : '#3D4043';
+        ctx.fillStyle = active ? '#3774E0' : '#3D4043';
 
         for (let x = margin; x < size; x += bar + margin) {
             const h = Math.sin(x / size * Math.PI) * height;
