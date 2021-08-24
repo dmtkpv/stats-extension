@@ -8,10 +8,10 @@
 
     const ms = new Panel('MS', '#0f0', '#020');
     const fps = new Panel('FPS', '#0ff', '#002');
-    const ram = new Panel('MB', '#f08', '#002');
-    const process_ram = new Panel('MB', '#f08', '#002');
-    const process_cpu = new Panel('%', '#ff0', '#002');
-    const stats = new Stats('body', { ms, fps, ram, process_ram, process_cpu });
+    const mb = new Panel('MB', '#f08', '#002');
+    const ram = new Panel('RAM', '#f0f', '#002');
+    const cpu = new Panel('CPU', '#ff0', '#002');
+    const stats = new Stats('body', { ms, fps, mb, ram, cpu });
 
 
 
@@ -31,7 +31,7 @@
         ms.update(passed);
         if (time > SEC) {
             fps.update(Math.round(frame * SEC / time));
-            ram.update(performance.memory.usedJSHeapSize / MB);
+            mb.update(performance.memory.usedJSHeapSize / MB);
             frame = 0;
             time = 0;
         }
@@ -48,8 +48,8 @@
     }
 
     function updateProcess (data) {
-        process_ram.update(data.privateMemory / MB);
-        process_cpu.update(data.cpu);
+        ram.update(data.privateMemory / MB);
+        cpu.update(data.cpu);
     }
 
 

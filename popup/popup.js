@@ -23,12 +23,9 @@ import { Storage, Tabs, Icon } from '../api.js'
 
     const $form = document.forms[0];
 
-    if (chrome.processes) {
+    if (!chrome.processes) {
         $form.removeChild($form.ram.parentNode);
-    }
-    else {
-        $form.removeChild($form.process_ram.parentNode);
-        $form.removeChild($form.process_cpu.parentNode);
+        $form.removeChild($form.cpu.parentNode)
     }
 
     for (const $input of  $form.elements) {
