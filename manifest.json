@@ -10,9 +10,7 @@
   "permissions": [
     "scripting",
     "storage",
-    "tabs"
-  ],
-  "optional_permissions": [
+    "tabs",
     "processes"
   ],
   "host_permissions": [
