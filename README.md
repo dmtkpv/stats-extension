@@ -1,7 +1,7 @@
 # TabStats
 **Performance monitor extension for Chrome**
 
-![TabStats](https://raw.githubusercontent.com/dmtkpv/tabstats/master/image.png)
+![TabStats](https://raw.githubusercontent.com/dmtkpv/tabstats/master/screenshot.png)
 
 This extension provides a simple info box that will help you monitor your code performance.
 
